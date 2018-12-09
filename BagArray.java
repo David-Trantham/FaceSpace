@@ -1,3 +1,4 @@
+package finalProject;
 /* BagArray (generic array-based bag)
  *
  * Methods
