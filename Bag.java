@@ -1,3 +1,4 @@
+package finalProject;
 import java.util.Iterator;
 
 public interface Bag<Item> extends Iterable<Item> {

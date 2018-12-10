@@ -1,3 +1,4 @@
+package finalProject;
 /*
  * The following provides an adjacency list implementation of a graph. The main method
  * prints the adjacency lists for the graphs constructed.
@@ -12,7 +13,7 @@ public class Graph {
 
     private int numVertices;
     private int numEdges;
-    private Bag<Integer>[] adj;
+    private BagList<Integer>[] adj;
 
     // create an empty graph with V vertices
     public Graph(int numVertices) {
@@ -47,11 +48,11 @@ public class Graph {
         this.numEdges = 0;
 
         // construct array of bags (using ugly cast due to generics in Bag)
-        adj = (Bag<Integer>[]) new Bag[numVertices];
+        adj = (BagList<Integer>[]) new BagList[numVertices];
 
         // construct all the individual (initially empty) bags
         for (int v = 0; v < numVertices; v++) {
-            adj[v] = new BagArray<Integer>();
+            adj[v] = new BagList<Integer>();
         }
     }
 
@@ -61,6 +62,13 @@ public class Graph {
         adj[w].add(v);
     }
 
+    public void removeEdge(int v, int w) {
+    	numEdges--;
+    	adj[v].remove(w);
+    	adj[w].remove(v);
+    	
+    }
+    
     // produce something to iterate through vertices adjacent to v
     public Iterable<Integer> adj(int v) {
         return adj[v];  //remember bags are iterable
