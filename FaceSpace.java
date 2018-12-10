@@ -22,7 +22,6 @@ public class FaceSpace {
 		User newUser = new User(name, nextid++);
 		htc.put(newUser);
 		//System.out.println(htc.hash(name));
-
 	}
 
 	public User searchUser(String name) {
@@ -41,15 +40,14 @@ public class FaceSpace {
 	}
 	
 	public int degreeOfSeperation(String name1, String name2) {
-		int count = 0;
+		// Find the shortest path
 		BreadthFirstPaths paths = new BreadthFirstPaths(friends, searchUser(name1).id());
-		for(int i : paths.pathTo(searchUser(name2).id())) {
-			count++;
-		}
-		return count - 1;
-		
+		Iterable p = paths.pathTo(searchUser(name2).id());
+		java.util.Stack s = (java.util.Stack) p;
+		//System.out.println(s);
+		return s.size()-1;
 	}
-	// Find the shortest path
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		FaceSpace f = new FaceSpace();
 		f.AddUser("0");
@@ -65,7 +63,7 @@ public class FaceSpace {
 //		f.RemoveFriend("3", "2");
 		System.out.println(f.friends.toString());
 		System.out.println(f.degreeOfSeperation("2", "1"));
-
+		
 	}
 }
 

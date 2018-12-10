@@ -9,6 +9,10 @@ public class BagList<Item> implements Iterable<Item> {
 	private class Node {
 		Item item;
 		Node next;
+		
+		public String toString() {
+			return "+" + this.item + ".";
+		}
 	}
 
 	public void add(Item item) { // same as push() in Stack
@@ -36,10 +40,6 @@ public class BagList<Item> implements Iterable<Item> {
 
 		public boolean hasNext() {
 			return current != null;
-
-		}
-		
-		public void remove() { 
 		}
 
 		public Item next() {
@@ -60,23 +60,32 @@ public class BagList<Item> implements Iterable<Item> {
 			throw new RuntimeException("try to remove from an empty list");
 			}
 			
-			if (size == 1) {
+			if (this.size == 1) {
 				first = first.next;
 				size--;
 			}
-			else {
-				for (Node x = first; x != null; x = x.next) {
-				//System.out.println("HERE?");
-				if (x.item.equals(key)) {
-					System.out.println("HI");
-					x = x.next;
-					size--;
-					System.out.println(size);
-				}
+			
+			else if (first.item.equals(key)) {
+				first = first.next;
+			}
+			
+			else {			
+				Node x = first;
+			
+				for ( x = first; (x != null) && (x.next != null); x = x.next) {
+					//System.out.println("HERE?");
+					if (x.next.item.equals(key)) {
+						//System.out.println("HI");
+						x.next= x.next.next;
+						size--;
+						//System.out.println(size);
+					}
 			}
 			
 		}
 		
 	}
+
+	
 
 }
