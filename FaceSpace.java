@@ -22,6 +22,7 @@ public class FaceSpace {
 		User newUser = new User(name, nextid++);
 		htc.put(newUser);
 		//System.out.println(htc.hash(name));
+
 	}
 
 	public User searchUser(String name) {
@@ -64,7 +65,7 @@ public class FaceSpace {
 //		f.RemoveFriend("3", "2");
 		System.out.println(f.friends.toString());
 		System.out.println(f.degreeOfSeperation("2", "1"));
-		
+
 	}
 }
 

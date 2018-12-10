@@ -79,6 +79,4 @@ public class BagList<Item> implements Iterable<Item> {
 		
 	}
 
-	
-
 }
