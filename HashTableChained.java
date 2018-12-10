@@ -24,4 +24,13 @@ public class HashTableChained {
 	public void put(User user) {
 		a[hash(user.name())].put(user);
 	}
+	
+	public String toString() {
+		String s = "";
+		for (int i = 0; i <= a.length - 1; i++) {
+			s += i + ":";
+			s += a[i];
+		}
+		return s;
+	}
 }
