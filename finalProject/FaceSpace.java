@@ -79,7 +79,9 @@ public class FaceSpace {
 					if (searchedUser == null) {
 						System.out.println("User '" + name1 + "' not found.");
 					} else {
+					int id = f.searchUser(name1).id();
 					System.out.println("User '" + name1 + "' with ID number " + searchedUser.id() + " was found!");
+					System.out.println("Friends: " + friendList(name1, f));
 					}
 					break;
 				case "addfriend":
@@ -151,5 +153,15 @@ public class FaceSpace {
 		} else {
 			return null; // TODO: Is this alright?
 		}
+	}
+	
+	private static String friendList(String name1, FaceSpace f) {
+		int id1 = f.searchUser(name1).id();
+		String friendList = "";
+		for (int i : f.friends.adj(id1)) {
+			friendList += f.searchUser(f.friends.adj(i).iterator().next());
+		}
+		return friendList;
+		
 	}
 }
