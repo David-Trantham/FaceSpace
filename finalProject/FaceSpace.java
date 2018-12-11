@@ -20,7 +20,7 @@ public class FaceSpace {
 	public void AddUser(String name) { // Adds user to the htc based on the name string
 		User newUser = new User(name, nextid++);
 		htc.put(newUser);
-		System.out.println(htc.hash(name));
+//		System.out.println(htc.hash(name));
 	}
 
 	public User searchUser(String name) {
@@ -65,9 +65,13 @@ public class FaceSpace {
 					break;
 				case "adduser":
 					name1 = f.nextParam(scanner);
-
+					
+					if(f.searchUser(name1) == null) {
 					f.AddUser(name1);
 					System.out.println("User " + name1 + " successfully added to FaceSpace! :)");
+					} else {
+						System.out.println("User " + name1 + " is already on FaceSpace!");
+					}
 					break;
 				case "searchuser":
 					name1 = f.nextParam(scanner);
@@ -81,7 +85,6 @@ public class FaceSpace {
 				case "addfriend":
 					name1 = f.nextParam(scanner);
 					name2 = f.nextParam(scanner);
-
 					f.AddFriend(name1, name2);
 					System.out.println("User " + name1 + " is now friends with user " + name2 + "!");
 					break;
