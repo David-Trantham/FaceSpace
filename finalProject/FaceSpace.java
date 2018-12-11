@@ -54,7 +54,8 @@ public class FaceSpace {
 		System.out.println("Welcome to FaceSpace! Please enter a command, or type 'help' for help.");
 		String name1, name2;
 		Scanner scanner = new Scanner(System.in);
-		while (true) {
+		boolean running = true;
+		while (running) {
 			if (scanner.hasNext()) {
 				String input = scanner.next();
 				input = input.toLowerCase();
@@ -98,6 +99,10 @@ public class FaceSpace {
 					int deg = f.degreeOfSeperation(name1, name2);
 					System.out.println("User " + name1 + " and user " + name2 + " are " + deg + " degree(s) of separation apart.");
 					break;
+				case "exit":
+					scanner.close();
+					running = false;
+					break;
 				default:
 					System.out.println("Command not recognized. Please enter a valid command or type 'help' for help.");
 				}
@@ -131,6 +136,8 @@ public class FaceSpace {
 				+ "removefriend 'name1' 'name2' : Removes a friendship between users 'name1' and 'name2', if a friendship was there."
 				+ System.lineSeparator()
 				+ "degree 'name1' 'name2' : Determines the shortest friendship path between user with 'name1' and user with 'name2'."
+				+ System.lineSeparator()
+				+ "exit : Exits the program"
 				+ System.lineSeparator()
 				+ "==============================================================================================================================";
 	}
