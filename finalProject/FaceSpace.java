@@ -1,6 +1,5 @@
 package finalProject;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class FaceSpace {
@@ -33,19 +32,33 @@ public class FaceSpace {
 
 	public void RemoveFriend(String name1, String name2) {
 		// Remove friends
-		friends.removeEdge(searchUser(name1).id(), searchUser(name2).id());
+		int id1 = searchUser(name1).id();
+		int id2 = searchUser(name2).id();
+ 		friends.removeEdge(id1, id2);
 	}
 
 	public int degreeOfSeperation(String name1, String name2) {
 		// Find the shortest path
-		BreadthFirstPaths paths = new BreadthFirstPaths(friends, searchUser(name1).id());
-		Iterable p = paths.pathTo(searchUser(name2).id());
-		java.util.Stack s = (java.util.Stack) p;
-		// System.out.println(s);
-		return s.size() - 1;
+		int id1 = searchUser(name1).id();
+		int id2 = searchUser(name2).id();
+ 		if (isConnected(name1, name2)) {
+			BreadthFirstPaths paths = new BreadthFirstPaths(friends, id1);
+			Iterable p = paths.pathTo(id2);
+			java.util.Stack s = (java.util.Stack) p;
+			return s.size() - 1;
+		} else {
+			return -1;
+		}
+	}
+ 	private boolean isConnected(String name1, String name2) {
+		ConnectedComponents cc;
+		int id1 = searchUser(name1).id();
+		int id2 = searchUser(name2).id();
+ 		cc = new ConnectedComponents(friends);
+		return (cc.id(id1) == cc.id(id2));
 	}
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 //		**User Interface**
 		FaceSpace f = new FaceSpace();
 
@@ -79,7 +92,7 @@ public class FaceSpace {
 					} else {
 					int id = f.searchUser(name1).id();
 					System.out.println("User '" + name1 + "' with ID number " + searchedUser.id() + " was found!");
-//					System.out.println("Friends: " + friendList(name1, f));
+					System.out.println("Friends: " + friendList(name1, f));
 					}
 					break;
 				case "addfriend":
@@ -93,14 +106,17 @@ public class FaceSpace {
 					name2 = f.nextParam(scanner);
 
 					f.RemoveFriend(name1, name2);
-					System.out.println("User " + name1 + "is no longer friends with " + name2 + ".");
+					System.out.println("User " + name1 + " is no longer friends with " + name2 + ".");
 					break;
 				case "degree":
 					name1 = f.nextParam(scanner);
 					name2 = f.nextParam(scanner);
-
 					int deg = f.degreeOfSeperation(name1, name2);
+					if(deg != -1) {
 					System.out.println("User " + name1 + " and user " + name2 + " are " + deg + " degree(s) of separation apart.");
+					} else {
+						System.out.println(name1 + " and " + name2 + " are not friends!");
+					}
 					break;
 				case "exit":
 					scanner.close();
@@ -153,13 +169,13 @@ public class FaceSpace {
 		}
 	}
 
-//	private static String friendList(String name1, FaceSpace f) {
-//		int id1 = f.searchUser(name1).id();
-//		String friendList = "";
-//		for (int i : f.friends.adj(id1)) {
-//			friendList += f.searchUser(f.friends.adj(i).iterator().next());
-//		}
-//		return friendList;
+	private static String friendList(String name1, FaceSpace f) {
+		int id1 = f.searchUser(name1).id();
+		String friendList = "";
+		for (int i : f.friends.adj(id1)) {
+			friendList += (f.friends.adj(i).iterator().next());
+		}
+		return friendList;
 
 	}
-//}
+}

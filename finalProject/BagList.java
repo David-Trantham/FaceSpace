@@ -52,7 +52,6 @@ public class BagList<Item> implements Iterable<Item> {
 	public void remove(Item key) {
 
 		if (this.isEmpty()) {
-			System.out.println("Empty");
 			throw new RuntimeException("try to remove from an empty list");
 		}
 
