@@ -1,3 +1,4 @@
+//SUBMITTED BY: ARVIN WANG AND DAVID TRANTHAM
 package finalProject;
 /* BagArray (generic array-based bag)
  *

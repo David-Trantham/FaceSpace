@@ -1,3 +1,4 @@
+//SUBMITTED BY: ARVIN WANG AND DAVID TRANTHAM
 package finalProject;
 /*
  * The following provides an adjacency list implementation of a graph. The main method
