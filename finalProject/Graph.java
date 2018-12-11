@@ -66,9 +66,9 @@ public class Graph {
     	numEdges--;
     	adj[v].remove(w);
     	adj[w].remove(v);
-    	
+
     }
-    
+
     // produce something to iterate through vertices adjacent to v
     public Iterable<Integer> adj(int v) {
         return adj[v];  //remember bags are iterable
@@ -101,23 +101,6 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        Graph g = new Graph(6);
-        g.addEdge(0, 2);
-        g.addEdge(0, 1);
-        g.addEdge(3, 5);
-        g.addEdge(0, 5);
-        g.addEdge(1, 2);
-        g.addEdge(3, 4);
-        g.addEdge(2, 3);
-        g.addEdge(2, 4);
-
-        System.out.println(g);
-
-        if (args.length > 0) {
-           System.out.println();
-           Graph g2 = new Graph(args[0]);
-           System.out.println(g2);
-        }
     }
 
 }

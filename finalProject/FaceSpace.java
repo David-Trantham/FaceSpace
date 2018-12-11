@@ -7,12 +7,10 @@ public class FaceSpace {
 	private HashTableChained htc;
 	private Graph friends;
 	private int nextid;
-	private String pathToFile;
 
 	public FaceSpace() {
 		this.nextid = 0;
 		this.htc = new HashTableChained(31);
-		this.pathToFile = "/Users/arvinwang/Desktop/NameList.txt";
 		friends = new Graph(31);
 
 	}
@@ -65,7 +63,7 @@ public class FaceSpace {
 					break;
 				case "adduser":
 					name1 = f.nextParam(scanner);
-					
+
 					if(f.searchUser(name1) == null) {
 					f.AddUser(name1);
 					System.out.println("User " + name1 + " successfully added to FaceSpace! :)");
@@ -81,7 +79,7 @@ public class FaceSpace {
 					} else {
 					int id = f.searchUser(name1).id();
 					System.out.println("User '" + name1 + "' with ID number " + searchedUser.id() + " was found!");
-					System.out.println("Friends: " + friendList(name1, f));
+//					System.out.println("Friends: " + friendList(name1, f));
 					}
 					break;
 				case "addfriend":
@@ -93,7 +91,7 @@ public class FaceSpace {
 				case "removefriend":
 					name1 = f.nextParam(scanner);
 					name2 = f.nextParam(scanner);
-					
+
 					f.RemoveFriend(name1, name2);
 					System.out.println("User " + name1 + "is no longer friends with " + name2 + ".");
 					break;
@@ -113,7 +111,7 @@ public class FaceSpace {
 				}
 			}
 		}
-	
+
 //		**Testing**
 //		FaceSpace f = new FaceSpace();
 //		f.AddUser("0");
@@ -154,14 +152,14 @@ public class FaceSpace {
 			return null; // TODO: Is this alright?
 		}
 	}
-	
-	private static String friendList(String name1, FaceSpace f) {
-		int id1 = f.searchUser(name1).id();
-		String friendList = "";
-		for (int i : f.friends.adj(id1)) {
-			friendList += f.searchUser(f.friends.adj(i).iterator().next());
-		}
-		return friendList;
-		
+
+//	private static String friendList(String name1, FaceSpace f) {
+//		int id1 = f.searchUser(name1).id();
+//		String friendList = "";
+//		for (int i : f.friends.adj(id1)) {
+//			friendList += f.searchUser(f.friends.adj(i).iterator().next());
+//		}
+//		return friendList;
+
 	}
-}
+//}

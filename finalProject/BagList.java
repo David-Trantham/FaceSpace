@@ -9,7 +9,7 @@ public class BagList<Item> implements Iterable<Item> {
 	private class Node {
 		Item item;
 		Node next;
-		
+
 		public String toString() {
 			return "+" + this.item + ".";
 		}
@@ -45,47 +45,39 @@ public class BagList<Item> implements Iterable<Item> {
 		public Item next() {
 			Item item = current.item;
 			current = current.next;
-
 			return item;
-
 		}
-
 	}
-	
-	public void remove(Item key) { 
-		
-			
-			if (this.isEmpty()) {
+
+	public void remove(Item key) {
+
+		if (this.isEmpty()) {
 			System.out.println("Empty");
 			throw new RuntimeException("try to remove from an empty list");
-			}
-			
-			if (this.size == 1) {
-				first = first.next;
-				size--;
-			}
-			
-			else if (first.item.equals(key)) {
-				first = first.next;
-			}
-			
-			else {			
-				Node x = first;
-			
-				for ( x = first; (x != null) && (x.next != null); x = x.next) {
-					//System.out.println("HERE?");
-					if (x.next.item.equals(key)) {
-						//System.out.println("HI");
-						x.next= x.next.next;
-						size--;
-						//System.out.println(size);
-					}
-			}
-			
 		}
-		
-	}
 
-	
+		if ((this.size == 1) && (first.item.equals(key))) {
+			first = first.next;
+			size--;
+		}
+
+		else if (first.item.equals(key)) {
+			first = first.next;
+			size--;
+		}
+
+		else {
+			Node x = first;
+
+			for (x = first; (x != null) && (x.next != null); x = x.next) {
+				if (x.next.item.equals(key)) {
+					x.next = x.next.next;
+					size--;
+				}
+			}
+
+		}
+
+	}
 
 }
